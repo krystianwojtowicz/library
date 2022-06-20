@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form onsubmit='return addBookToLibrary()' action="">
+        <form action="/action_page.php">
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title"><br>
+            <label for="author">Author:</label><br>
+            <input type="text" id="author" name="author"><br>
+            <label for="pages">Pages:</label><br>
+            <input type="number" id="pages" name="pages"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+        <p></p>
+        <script>
+            let myLibrary = [];
+            const title = document.getElementById("title");
+            const author = document.getElementById("author");
+            const pages = document.getElementById("pages");
+            const form = document.querySelector('form');
+
+            function Book() {
+                // the constructor...
+            }
+
+            function addBookToLibrary() {
+                myLibrary.push({
+                    title: title.value,
+                    author: author.value,
+                    pages: pages.value
+                })
+                form.reset();
+                console.log(myLibrary);
+                return false;
+                // form = document.querySelector('form');
+                // boxvalue = document.getElementById('box').value;
+                // myLibrary.push(boxvalue);
+                // console.log(myLibrary);
+                // form.reset();
+                // display();
+                // return false;
+            }
+
+            function display() {
+                p = document.querySelector('p');
+                p.innerText = myLibrary;
+            }
+        </script>
+</body>
+
+</html>
