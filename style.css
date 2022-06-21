@@ -1,0 +1,52 @@
+:root {
+    --clr-gray: #37474f;
+    --clr-gray-light: #b0bec5;
+  }
+  
+  * {
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    color: var(--clr-gray);
+    margin: 2rem;
+  }
+  
+  .wrapper-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 20rem);
+    grid-template-rows: 150px;
+    grid-auto-rows: 150px;
+    grid-auto-columns: repeat(auto-fit, 20rem);
+    justify-content: center;
+  }
+  
+  .container {
+    height: 134px;
+    overflow: hidden;
+    box-shadow: 0px 2px 8px 0px var(--clr-gray-light);
+    background-color: white;
+    text-align: center;
+    border-radius: 1rem;
+    position: relative;
+    margin: 0.5rem;
+  }
+  
+  .title, .author, .pages {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+/* .container {
+    display: grid;
+    grid-template-columns: 50px 50px 50px;
+    grid-template-rows: 50px 50px;
+    column-gap: 10px;
+    grid-auto-rows: 50px;
+  }
+  .container > div {
+    border: 1px solid blue;
+  } */

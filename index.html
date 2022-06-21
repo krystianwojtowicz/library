@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 
 <body>
-    <form onsubmit='return addBookToLibrary()' action="">
+    <form onsubmit='return intakeFormData()' action="">
         <form action="/action_page.php">
             <label for="title">Title:</label><br>
             <input type="text" id="title" name="title"><br>
@@ -20,26 +21,72 @@
             <input type="submit" value="Submit">
         </form>
         <p></p>
+        <div class="wrapper-grid">
+            <div class="container">
+                <!-- <h1 class="title">Anna Marie</h1>
+                <h1 class="author">Anna Marie</h1>
+                <h1 class="pages">Anna Marie</h1> -->
+            </div>
+        </div>
         <script>
             let myLibrary = [];
-            const title = document.getElementById("title");
-            const author = document.getElementById("author");
-            const pages = document.getElementById("pages");
+            const wrapper_grid = document.querySelector('.wrapper-grid');
             const form = document.querySelector('form');
 
-            function Book() {
-                // the constructor...
+
+            class Book {
+                constructor(
+                    title = 'Unknown',
+                    author = 'Unknown',
+                    pages = '0',
+                    // isRead = false
+                ) {
+                    this.title = title
+                    this.author = author
+                    this.pages = pages
+                    // this.isRead = isRead
+                }
             }
 
-            function addBookToLibrary() {
-                myLibrary.push({
-                    title: title.value,
-                    author: author.value,
-                    pages: pages.value
-                })
+            function intakeFormData() {
+                let title = document.getElementById("title").value;
+                let author = document.getElementById("author").value;
+                let pages = document.getElementById("pages").value;
+                addBookToLibrary(title, author, pages);
+
+            }
+
+            function addBookToLibrary(title, author, pages) {
+                let book = new Book(title, author, pages)
+                myLibrary.push(book);
+                const div = document.createElement('div');
+                wrapper_grid.appendChild(div);
+                for (let key in myLibrary) {
+                    console.log(`${key}: ${myLibrary[key]}`);
+                    const para = document.createElement('p');
+                    para.textContent = (`${key}: ${myLibrary[key]}`);
+                    div.appendChild(para);
+
+                }
                 form.reset();
                 console.log(myLibrary);
-                return false;
+                // const div = document.createElement('div');
+                // wrapper_grid.appendChild(div);
+
+                // const divcontainer = document.createElement('div');
+                // div.appendChild(divcontainer);
+                // divcontainer.classList.add('container');
+                // const h1 = document.createElement('h1');
+                // divcontainer.appendChild(h1);
+                // h1.textContent = 'jajko';
+                // const h2 = document.createElement('h1');
+                // divcontainer.appendChild(h2);
+                // h2.textContent = 'jajkos';
+                // const h3 = document.createElement('h1');
+                // divcontainer.appendChild(h3);
+                // h3.textContent = 'jajkoss';
+                // return false;
+
                 // form = document.querySelector('form');
                 // boxvalue = document.getElementById('box').value;
                 // myLibrary.push(boxvalue);
