@@ -10,131 +10,28 @@
 </head>
 
 <body>
-    <form onsubmit='return createBookItem()' action="">
-        <form action="/action_page.php">
-            <label for="title">Title:</label><br>
-            <input type="text" id="title" name="title"><br>
-            <label for="author">Author:</label><br>
-            <input type="text" id="author" name="author"><br>
-            <label for="pages">Pages:</label><br>
-            <input type="number" id="pages" name="pages"><br><br>
-            <input type="submit" value="Submit">
-        </form>
-        <p></p>
-        <div class="wrapper-grid">
-        </div>
-        <script>
-            let myLibrary = [{
-                title: 'Book1',
-                author: 'me',
-                pages: 500
-            },{
-                title: 'Book2',
-                author: 'you',
-                pages: 200
-            }];
-            const wrapper_grid = document.querySelector('.wrapper-grid');
-            const form = document.querySelector('form');
-            const title = document.getElementById('title');
-            const author = document.getElementById('author');
-            const pages = document.getElementById('pages');
+    <button>Add book</button>
 
-            function addingBook() {
-
-            }
-
-            function createBookElement(el, content, className) {
-                const element = document.createElement(el);
-                element.textContent = content;
-                element.setAttribute('class', className);
-                return element;
-            }
-
-            function createReadElement(bookItem, book) {
-                const read = document.createElement('div');
-                read.setAttribute('class', 'book-read');
-                read.appendChild(createBookElement('h1', 'Read?', 'book-read-title'));
-                let input = document.createElement('input');
-                input.type = 'checkbox';
-                input.addEventListener('click', (e) => {
-                    if (e.target.checked) {
-                        bookItem.setAttribute('class', 'container read-checked');
-                        book.read = true;
-                        renderAndSave();
-                    } else {
-                        bookItem.setAttribute('class', 'container read-unchecked');
-                        book.read = false;
-                        renderAndSave();
-                    }
-                });
-                if (book.read) {
-                    input.checked = true;
-                    bookItem.setAttribute('class', 'container read-checked');
-                }
-                read.appendChild(input);
-                return read;
-            }
-
-            function createBookItem(book,index) {
-                const bookItem = document.createElement('div');
-                bookItem.setAttribute('id', index);
-                bookItem.setAttribute('key', index);
-                bookItem.setAttribute('class', 'container');
-                bookItem.appendChild(createBookElement('h1', `Title:${book.title}`, 'book-title'));
-                bookItem.appendChild(createBookElement('h1', `Author:${book.author}`, 'book-author'));
-                bookItem.appendChild(createBookElement('h1', `Pages:${book.pages}`, 'book-pages'));
-                bookItem.appendChild(createReadElement(bookItem,book));
-                wrapper_grid.insertAdjacentElement('afterbegin', bookItem);
-                return false;
-            }
-
-            function renderBooks() {
-                myLibrary.map((book,index) => {
-                    createBookItem(book,index);
-                })
-                return false;
-            }
-            renderBooks();
-
-
-            // function Book(title, author, pages) {
-            //     this.title = title
-            //     this.author = author
-            //     this.pages = pages
-            //     // this.isRead = isRead
-            // }
-
-            // function intakeFormData() {
-            //     let title = document.getElementById("title").value;
-            //     let author = document.getElementById("author").value;
-            //     let pages = document.getElementById("pages").value;
-            //     addBookToLibrary(title, author, pages);
-
-            // }
-
-            // function addBookToLibrary(title, author, pages) {
-            //     let book = new Book(title, author, pages)
-            //     myLibrary.push(book);
-            //     display();
-            // }
-
-            // function display() {
-            //     myLibrary.forEach(element => {
-            //         const div = document.createElement('div');
-            //         wrapper_grid.appendChild(div);
-            //         for (let key in myLibrary) {
-            //             console.log(`${key}: ${myLibrary[key]}`);
-            //             const para = document.createElement('p');
-            //             para.textContent = (`${key}: ${myLibrary[key]}`);
-            //             div.appendChild(para);
-
-            //         }
-            //     });
-
-            //     form.reset();
-            //     console.log(myLibrary);
-            // }
-        </script>
+    <!-- <form  action=""> -->
+    <!-- coś tu źle -->
+    <form onsubmit='return createBookItem()' action="/action_page.php">
+        <span class="close">&times;</span>
+        <h1 class="form-title">Add book</h1>
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="author">Author:</label><br>
+        <input type="text" id="author" name="author"><br>
+        <label for="pages">Pages:</label><br>
+        <input type="number" id="pages" name="pages"><br>
+        <label for="read">Read?:</label><br>
+        <input type="checkbox" id="read" name="read"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <p></p>
+    <div class="wrapper-grid">
+    </div>
+    <script src="main.js"> 
+    </script>
 </body>
 
 </html>
