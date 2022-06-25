@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <button>Add book</button>
 
-    <!-- <form  action=""> -->
-    <!-- coś tu źle -->
-    <form onsubmit='return createBookItem()' action="/action_page.php">
+    <div class="for-heading">
+        <h1>Add New Book To Library</h1>
+    </div>
+    <div class="books-heading">
+        <h1>Current Books In Library</h1>
+    </div>
+    <button class="add-book">Add book</button>
+    <form>
         <span class="close">&times;</span>
         <h1 class="form-title">Add book</h1>
         <label for="title">Title:</label><br>
@@ -25,13 +27,16 @@
         <input type="number" id="pages" name="pages"><br>
         <label for="read">Read?:</label><br>
         <input type="checkbox" id="read" name="read"><br><br>
-        <input type="submit" value="Submit">
+        <input class='submit' type="submit" value="Submit">
     </form>
-    <p></p>
+    <div class="books">
+        
+    </div>
     <div class="wrapper-grid">
     </div>
-    <script src="main.js"> 
-    </script>
+    <div id="msg">
+        <pre></pre>
+    </div>
+    <script src="main.js"></script>
 </body>
-
 </html>
