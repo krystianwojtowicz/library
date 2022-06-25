@@ -8,20 +8,27 @@ const form = document.querySelector("form");
 const addBookBtn = document.querySelector(".add-book");
 const submit = document.querySelector(".submit");
 const books = document.querySelector(".wrapper-grid");
+const close = document.querySelector('.close');
 
 let myLibrary = [{
   title: 'hobbit',
   author: 'me',
-  pages: '2'
+  pages: '2',
+  read: true
 },
 {
   title: 'hobbit2',
   author: 'you',
-  pages: '3'
+  pages: '3',
+  read: false
 }];
 
 addBookBtn.addEventListener("click", () => {
   form.style.display = "block";
+});
+
+close.addEventListener("click", () => {
+  form.style.display = "none";
 });
 
 const addBookToLibrary = (e) => {
@@ -39,9 +46,7 @@ const addBookToLibrary = (e) => {
   const divtitle = document.createElement("div");
   div.appendChild(divtitle);
   divtitle.textContent = book.title; 
-  console.warn({ myLibrary });
-  let pre = document.querySelector("#msg pre");
-  pre.textContent = "\n" + JSON.stringify(myLibrary, "\t", 2);
+  form.style.display = "none";
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -55,5 +60,9 @@ const display = myLibrary.forEach(book => {
   const divtitle = document.createElement("div");
   div.appendChild(divtitle);
   divtitle.textContent = book.title;
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  div.appendChild(checkbox);
+  checkbox.checked = book.read;
 });
 
