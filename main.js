@@ -37,6 +37,7 @@ const addBookToLibrary = (e) => {
     id: Date.now(),
     title: document.getElementById("title").value,
     pages: document.getElementById("pages").value,
+    read: document.getElementById('read').value
   };
   myLibrary.push(book);
   document.forms[0].reset();
@@ -45,7 +46,11 @@ const addBookToLibrary = (e) => {
   books.appendChild(div);
   const divtitle = document.createElement("div");
   div.appendChild(divtitle);
-  divtitle.textContent = book.title; 
+  divtitle.textContent = book.title;
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  div.appendChild(checkbox);
+  checkbox.checked = book.read; 
   form.style.display = "none";
 };
 
