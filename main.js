@@ -11,7 +11,9 @@ const books = document.querySelector(".wrapper-grid");
 const close = document.querySelector(".close");
 const remove = document.querySelector(".remove");
 
-let myLibrary = [
+let myLibrary = 
+// JSON.parse(localStorage.getItem("MyLibrary")) ||
+ [
   {
     title: "hobbit",
     author: "me",
@@ -25,6 +27,9 @@ let myLibrary = [
     read: false,
   },
 ];
+
+// let jsonMyLibrary = JSON.stringify(myLibrary);
+// localStorage.setItem("MyLibrary", jsonMyLibrary);
 
 addBookBtn.addEventListener("click", () => {
   form.style.display = "block";
@@ -77,14 +82,48 @@ function display() {
     const div = document.createElement("div");
     div.classList.add("container");
     books.appendChild(div);
+
     const divtitle = document.createElement("div");
     div.appendChild(divtitle);
     divtitle.textContent = book.title;
-    const checkbox = document.createElement("input");
-    checkbox.style.display = "block";
-    checkbox.type = "checkbox";
+
+    // const edit = document.createElement('button');
+    // div.appendChild(edit);
+    // edit.textContent = 'edit';
+    // edit.addEventListener("click", editBook);
+
+    // function editBook() {
+    //   if(checkbox.checked) {
+    //     book.read = false;
+    //   } else {
+    //     book.read = true;
+    //   }
+    // }
+
+    // const checkbox = document.createElement("input");
+    // checkbox.style.display = "block";
+    // checkbox.type = "checkbox";
+    // div.appendChild(checkbox);
+    // checkbox.checked = book.read;
+
+    const checkbox = document.createElement("button");
+    if (book.read) {
+      checkbox.textContent = 'read';
+    } else {
+      checkbox.textContent = 'not read';
+    }
     div.appendChild(checkbox);
-    checkbox.checked = book.read;
+
+    checkbox.addEventListener('click', () => {
+      if (book.read) {
+        book.read = false;
+        checkbox.textContent = 'not read';
+      } else {
+        book.read = true;
+        checkbox.textContent = 'read';
+      }
+    })
+    
     const remove = document.createElement("button");
     remove.textContent = "remove";
     remove.classList.add("remove");
@@ -102,6 +141,8 @@ function display() {
     }
   });
 }
+// console.log(myLibrary);
+// console.log(jsonMyLibrary)
 
 // remove.addEventListener("click", () => {
 //   myLibrary = myLibrary.filter(book) =>
