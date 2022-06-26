@@ -43,25 +43,29 @@ const addBookToLibrary = (e, index) => {
     read: document.getElementById("read").value,
   };
   myLibrary.push(book);
-  document.forms[0].reset();
-  const div = document.createElement("div");
-  div.setAttribute("id", index);
-  div.classList.add("container");
-  books.appendChild(div);
-  const divtitle = document.createElement("div");
-  div.appendChild(divtitle);
-  divtitle.textContent = book.title;
-  const checkbox = document.createElement("input");
-  checkbox.style.display = "block";
-  checkbox.type = "checkbox";
-  div.appendChild(checkbox);
-  checkbox.checked = book.read;
-  form.style.display = "none";
-  const remove = document.createElement("button");
-  remove.textContent = "remove";
-  remove.classList.add("remove");
-  div.appendChild(remove);
-};
+  display();
+}
+
+// function display() {
+//   document.forms[0].reset();
+//   const div = document.createElement("div");
+//   div.setAttribute("id", index);
+//   div.classList.add("container");
+//   books.appendChild(div);
+//   const divtitle = document.createElement("div");
+//   div.appendChild(divtitle);
+//   divtitle.textContent = book.title;
+//   const checkbox = document.createElement("input");
+//   checkbox.style.display = "block";
+//   checkbox.type = "checkbox";
+//   div.appendChild(checkbox);
+//   checkbox.checked = book.read;
+//   form.style.display = "none";
+//   const remove = document.createElement("button");
+//   remove.textContent = "remove";
+//   remove.classList.add("remove");
+//   div.appendChild(remove);
+// };
 
 document.addEventListener("DOMContentLoaded", () => {
   submit.addEventListener("click", addBookToLibrary);
@@ -87,7 +91,6 @@ function display() {
     div.appendChild(remove);
     remove.dataset.linkedArray = index;
     index++;
-    console.log(remove.dataset.linkedArray);
 
     remove.addEventListener("click", removeBook);
 
@@ -99,7 +102,6 @@ function display() {
     }
   });
 }
-display();
 
 // remove.addEventListener("click", () => {
 //   myLibrary = myLibrary.filter(book) =>
