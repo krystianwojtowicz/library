@@ -1,9 +1,3 @@
-// function Book(title, author, pages, read) {
-//   this.title = title;
-//   this.author = author;
-//   this.pages = pages;
-//   this.read = read;
-// }
 const form = document.querySelector("form");
 const addBookBtn = document.querySelector(".add-book");
 const submit = document.querySelector(".submit");
@@ -11,25 +5,7 @@ const books = document.querySelector(".wrapper-grid");
 const close = document.querySelector(".close");
 const remove = document.querySelector(".remove");
 
-let myLibrary = 
-// JSON.parse(localStorage.getItem("MyLibrary")) ||
- [
-  {
-    title: "hobbit",
-    author: "me",
-    pages: "2",
-    read: true,
-  },
-  {
-    title: "hobbit2",
-    author: "you",
-    pages: "3",
-    read: false,
-  },
-];
-
-// let jsonMyLibrary = JSON.stringify(myLibrary);
-// localStorage.setItem("MyLibrary", jsonMyLibrary);
+let myLibrary = [];
 
 addBookBtn.addEventListener("click", () => {
   form.style.display = "block";
@@ -44,6 +20,7 @@ const addBookToLibrary = (e, index) => {
   let book = {
     id: Date.now(),
     title: document.getElementById("title").value,
+    author: document.getElementById("author").value,
     pages: document.getElementById("pages").value,
     read: document.getElementById("read").value,
   };
@@ -51,60 +28,30 @@ const addBookToLibrary = (e, index) => {
   display();
 }
 
-// function display() {
-//   document.forms[0].reset();
-//   const div = document.createElement("div");
-//   div.setAttribute("id", index);
-//   div.classList.add("container");
-//   books.appendChild(div);
-//   const divtitle = document.createElement("div");
-//   div.appendChild(divtitle);
-//   divtitle.textContent = book.title;
-//   const checkbox = document.createElement("input");
-//   checkbox.style.display = "block";
-//   checkbox.type = "checkbox";
-//   div.appendChild(checkbox);
-//   checkbox.checked = book.read;
-//   form.style.display = "none";
-//   const remove = document.createElement("button");
-//   remove.textContent = "remove";
-//   remove.classList.add("remove");
-//   div.appendChild(remove);
-// };
-
 document.addEventListener("DOMContentLoaded", () => {
   submit.addEventListener("click", addBookToLibrary);
 });
 
+const div = document.createElement("div");
+
+function createBookElement(el, name, content) {
+const elem = document.createElement(el);
+div.appendChild(elem);
+elem.textContent = name;
+const elem2 = document.createElement(el);
+elem2.textContent = content;
+div.appendChild(elem2);
+}
+
 function display() {
   let index = 0;
   myLibrary.forEach((book) => {
-    const div = document.createElement("div");
     div.classList.add("container");
     books.appendChild(div);
 
-    const divtitle = document.createElement("div");
-    div.appendChild(divtitle);
-    divtitle.textContent = book.title;
-
-    // const edit = document.createElement('button');
-    // div.appendChild(edit);
-    // edit.textContent = 'edit';
-    // edit.addEventListener("click", editBook);
-
-    // function editBook() {
-    //   if(checkbox.checked) {
-    //     book.read = false;
-    //   } else {
-    //     book.read = true;
-    //   }
-    // }
-
-    // const checkbox = document.createElement("input");
-    // checkbox.style.display = "block";
-    // checkbox.type = "checkbox";
-    // div.appendChild(checkbox);
-    // checkbox.checked = book.read;
+    createBookElement('h4', 'title:', `${book.title}`);
+    createBookElement('h4', 'author:', `${book.author}`);
+    createBookElement('h4', 'pages:', `${book.pages}`);
 
     const checkbox = document.createElement("button");
     if (book.read) {
@@ -140,12 +87,6 @@ function display() {
       display();
     }
   });
+  form.style.display = "none";
+  form.reset();
 }
-// console.log(myLibrary);
-// console.log(jsonMyLibrary)
-
-// remove.addEventListener("click", () => {
-//   myLibrary = myLibrary.filter(book) =>
-//    book.id != id
-
-// });
