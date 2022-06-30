@@ -3,14 +3,15 @@ const addBookBtn = document.querySelector(".add-book");
 const close = document.querySelector(".close");
 const submit = document.querySelector(".submit");
 const books = document.querySelector(".wrapper-grid");
-const remove = document.querySelectorAll(".remove")
+const remove = document.querySelectorAll(".remove");
 
-function Book(title, author, pages, read) {
-    this.title = title;
+  class Book {
+    constructor(title, author, pages, read) {
+      this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.id = Date.now();
+    }
   }
 
   let myLibrary = [];
@@ -30,7 +31,6 @@ function Book(title, author, pages, read) {
   const addBookToLibrary = (e) => {
     e.preventDefault();
     let book = {
-      id: Date.now(),
       title: document.getElementById("title").value,
       author: document.getElementById("author").value,
       pages: document.getElementById("pages").value,
@@ -39,7 +39,6 @@ function Book(title, author, pages, read) {
     myLibrary.push(book);
     form.style.display = "none";
     form.reset();
-    console.log(myLibrary)
     display();
   }
 
