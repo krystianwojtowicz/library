@@ -11,7 +11,6 @@ function Book(title, author, pages, read) {
     this.pages = pages;
     this.read = read;
     this.id = Date.now();
-    // this.id = Math.floor(Math.random() * 1000000);
   }
 
   let myLibrary = [];
@@ -27,8 +26,6 @@ function Book(title, author, pages, read) {
   document.addEventListener("DOMContentLoaded", () => {
     submit.addEventListener("click", addBookToLibrary);
   });
-
-
 
   const addBookToLibrary = (e) => {
     e.preventDefault();
@@ -47,7 +44,9 @@ function Book(title, author, pages, read) {
   }
 
   function display() {
+
     books.textContent = '';
+    let index = 0;
     myLibrary.forEach((book) => {
         function createBookElement(el, name, content) {
             const elem = document.createElement(el);
@@ -57,7 +56,7 @@ function Book(title, author, pages, read) {
             elem2.textContent = content;
             div.appendChild(elem2);
             }
-            
+
         const div = document.createElement("div");
         div.classList.add("container");
         books.appendChild(div);
@@ -73,6 +72,26 @@ function Book(title, author, pages, read) {
           checkbox.textContent = 'not read';
         }
         div.appendChild(checkbox);
+
+        // create remove book btn and add class attribute for each array card
+        const removeBookBtn = document.createElement('button');
+        removeBookBtn.classList.add('remove-book-btn');
+        removeBookBtn.textContent = "remove";
+
+        // link the data attribute of the remove button to the array and card
+        removeBookBtn.dataset.linkedArray = index;
+        index++;
+        div.appendChild(removeBookBtn);
+
+        // start event listener/remove array item from array and card from parent div via data link
+        removeBookBtn.addEventListener('click', removeBookFromLibrary);
+
+        function removeBookFromLibrary() {
+          let getBookToRemove = removeBookBtn.dataset.linkedArray;
+          myLibrary.splice(parseInt(getBookToRemove), 1);
+          div.remove();
+          display();
+        }
     
         checkbox.addEventListener('click', () => {
           if (book.read) {
@@ -83,18 +102,4 @@ function Book(title, author, pages, read) {
             checkbox.textContent = 'read';
           }
         });
-        const remove = document.createElement("button");
-        remove.textContent = "remove";
-        remove.classList.add("remove");
-        div.appendChild(remove);
-        // remove.dataset.linkedArray = index;
-        // index++;
-        remove.addEventListener("click", removeBook);
-        function removeBook() {
-            // let getBookToRemove = remove.dataset.linkedArray;
-            // myLibrary.splice(parseInt(getBookToRemove), 1);
-            // div.remove();
-            // display();
-            console.log('2')
-          }
   })}
